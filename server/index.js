@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path')
 
 const app = express();
 
@@ -11,6 +12,8 @@ mongoose.connect('mongodb://localhost:27017/Todo_DB', {
 	useNewUrlParser: true, 
 	useUnifiedTopology: true 
 }).then(() => console.log("Connected to MongoDB")).catch(console.error);
+
+app.use(express.static(path.join(__dirname,'../client/build')))
 
 // Models
 const Todo = require('./models/Todo');
